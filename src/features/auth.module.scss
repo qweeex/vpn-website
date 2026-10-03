@@ -1,0 +1,135 @@
+.layout {
+  min-height: 100dvh;
+  display: grid;
+  grid-template-columns: 45% 55%;
+}
+.aside {
+  background: #edf3ff;
+  padding: 36px 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  > div {
+    max-width: 370px;
+    margin: 35px auto;
+    img {
+      display: block;
+      width: 260px;
+      height: 260px;
+      object-fit: contain;
+      margin: 0 auto 20px;
+    }
+    h2 {
+      font-size: 40px;
+      line-height: 1.12;
+      margin-bottom: 18px;
+      span {
+        color: var(--blue);
+      }
+    }
+    p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+  }
+  small {
+    font-size: 11px;
+    color: var(--muted);
+  }
+}
+.main {
+  padding: 40px 55px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.back {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  text-decoration: none;
+  color: var(--muted);
+  font-size: 13px;
+}
+.formWrap {
+  width: 100%;
+  max-width: 400px;
+  margin: 60px auto;
+  h1 {
+    font-size: 34px;
+    margin: 15px 0;
+  }
+  p {
+    font-size: 14px;
+    color: var(--muted);
+    margin-bottom: 28px;
+  }
+  form {
+    display: grid;
+    gap: 18px;
+  }
+  form > button {
+    margin-top: 6px;
+    span {
+      margin-left: auto;
+    }
+  }
+}
+.kicker {
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  color: var(--blue);
+  font-weight: 700;
+}
+.field {
+  display: grid;
+  gap: 8px;
+  small {
+    color: #b52c36;
+    font-size: 12px;
+    &:empty {
+      display: none;
+    }
+  }
+}
+.switch {
+  text-align: center;
+  margin: 25px 0 0 !important;
+  font-size: 13px !important;
+  a {
+    color: var(--blue);
+    font-weight: 600;
+    text-decoration: none;
+    margin-left: 4px;
+  }
+}
+.footnote {
+  text-align: center;
+  color: var(--muted);
+  font-size: 10px;
+}
+.mobileBrand {
+  display: none;
+}
+@media (max-width: 800px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+  .aside {
+    display: none;
+  }
+  .main {
+    padding: 25px 22px;
+    min-height: 100dvh;
+  }
+  .formWrap {
+    margin: 40px auto;
+  }
+  .mobileBrand {
+    display: block;
+    margin-bottom: 40px;
+  }
+  .formWrap h1 {
+    font-size: 31px;
+  }
+}
