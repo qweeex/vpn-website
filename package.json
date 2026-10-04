@@ -10,7 +10,8 @@
     "typecheck": "next typegen && tsc --noEmit",
     "test": "vitest run",
     "test:e2e": "playwright test",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "support": "node --experimental-strip-types scripts/support.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.9.1",

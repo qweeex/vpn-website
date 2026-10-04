@@ -12,19 +12,19 @@ export function Landing() {
           <div className={s.heroCopy}>
             <div className={s.eyebrow}>
               <span />
-              ВАШ ИНТЕРНЕТ. ВАШИ ПРАВИЛА.
+              ПОДКЛЮЧЕНИЯ ДЛЯ ВАШИХ УСТРОЙСТВ
             </div>
             <h1>
-              VPN без лишнего
+              Связь без лишнего
               <br />
               <span>кукареканья.</span>
             </h1>
             <p>
-              Для работы, любимых сервисов и всего,
-              <br className={s.desktopBreak} /> что связывает вас с миром.
+              Подключайте телефон или компьютер
+              <br className={s.desktopBreak} /> и управляйте настройками в личном кабинете.
             </p>
             <div className={s.heroActions}>
-              <ActionLink href="/pricing">Подключить VPN</ActionLink>
+              <ActionLink href="/pricing">Подключить устройство</ActionLink>
               <a href="#how" className={s.textLink}>
                 Как это работает <ArrowUpRight size={17} />
               </a>
@@ -38,24 +38,25 @@ export function Landing() {
             <div className={s.orbit} />
             <div className={s.visualLabel}>
               <span />
-              НА СВЯЗИ С МИРОМ
+              ПОДКЛЮЧЕНИЯ ПОД РУКОЙ
             </div>
             <Image
-              src="/brand.png"
-              alt="Петух КукарекуVPN в солнечных очках на фоне земного шара"
-              width={530}
-              height={530}
-              priority
+              src="/kukareku-online.png"
+              alt="Кукареку Онлайн — петух с щитом на фоне земного шара"
+              width={1536}
+              height={1024}
+              sizes="(max-width: 680px) 340px, (max-width: 1000px) 45vw, 540px"
+              preload
               className={s.mascot}
             />
             <div className={s.visualBottom}>
-              <span>Чуть больше свободы.</span>
-              <span>И немного характера. ↗</span>
+              <span>Понятные настройки.</span>
+              <span>Удобное управление. ↗</span>
             </div>
           </div>
         </section>
         <div className={s.compatibility}>
-          <span>Один VPN. Привычные устройства.</span>
+          <span>Один кабинет. Привычные устройства.</span>
           <div>
             <span>macOS</span>
             <span>Windows</span>
@@ -71,7 +72,7 @@ export function Landing() {
             <div>
               <span className={s.kicker}>ВСЁ НУЖНОЕ. НИЧЕГО ЛИШНЕГО.</span>
               <h2>
-                Интернет — проще.
+                Подключение — проще.
                 <br />
                 Управление — тоже.
               </h2>
@@ -117,7 +118,7 @@ export function Landing() {
         <section className={s.pricingSection} id="pricing">
           <div className={s.section}>
             <div className={s.centerHeading}>
-              <span className={s.kicker}>ПЛАНЫ НА СВОБОДНЫЙ ИНТЕРНЕТ</span>
+              <span className={s.kicker}>СТОИМОСТЬ И УСЛОВИЯ ПОДПИСКИ</span>
               <h2>Сколько устройств у вас на примете?</h2>
               <p>Выберите тариф под свой ритм жизни.</p>
             </div>
@@ -156,7 +157,7 @@ export function Landing() {
               {
                 n: '03',
                 title: 'Подключайтесь',
-                text: 'Скачайте файл настроек и откройте его в OpenVPN Connect.',
+                text: 'Скачайте файл настроек и импортируйте его в совместимое приложение.',
               },
             ].map((step) => (
               <article key={step.n}>

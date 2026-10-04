@@ -23,8 +23,8 @@ export function Help({ id }: { id?: string }) {
     <>
       <PageHeading
         eyebrow="НА СВЯЗИ ЗА НЕСКОЛЬКО ШАГОВ"
-        title="Как подключить VPN"
-        description="Вам понадобятся приложение OpenVPN Connect и файл конфигурации."
+        title="Как настроить подключение"
+        description="Вам понадобятся совместимое приложение и файл конфигурации."
       />
       {id &&
         (profile.isPending ? (

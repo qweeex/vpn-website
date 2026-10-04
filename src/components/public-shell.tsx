@@ -1,4 +1,5 @@
 'use client';
+import { LegalLinks } from '@/components/legal-links';
 import Link from 'next/link';
 import { useQuery } from '@tanstack/react-query';
 import { api, keys } from '@/api/services';
@@ -26,7 +27,7 @@ export function PublicShell({ children }: { children: React.ReactNode }) {
                   Войти
                 </Link>
                 <span className={s.headerCta}>
-                  <ActionLink href="/pricing">Подключить VPN</ActionLink>
+                  <ActionLink href="/pricing">Подключить устройство</ActionLink>
                 </span>
               </>
             )}
@@ -36,9 +37,10 @@ export function PublicShell({ children }: { children: React.ReactNode }) {
       {children}
       <footer className={s.footer}>
         <Brand />
-        <span>Меньше хлопот. Больше интернета.</span>
+        <span>Подключения в одном кабинете.</span>
         <Link href="/app/help">Помощь с подключением ↗</Link>
-        <small>© {new Date().getFullYear()} КукарекуVPN</small>
+        <LegalLinks />
+        <small>© {new Date().getFullYear()} Кукареку Онлайн</small>
       </footer>
     </>
   );

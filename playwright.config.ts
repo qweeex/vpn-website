@@ -19,6 +19,7 @@ export default defineConfig({
         BACKEND_URL: 'http://127.0.0.1:4321',
         APP_ORIGIN: 'http://127.0.0.1:3101',
         NEXT_DIST_DIR: '.next-e2e',
+        SUPPORT_DB_PATH: './test-results/support-e2e.sqlite',
         SESSION_SECRET: 'a'.repeat(64),
       },
     },

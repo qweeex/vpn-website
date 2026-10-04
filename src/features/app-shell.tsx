@@ -1,4 +1,5 @@
 'use client';
+import { LegalLinks } from '@/components/legal-links';
 import { useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
@@ -55,7 +56,7 @@ export function LogoutButton() {
 }
 const nav = [
   { href: '/app', label: 'Главная', icon: House },
-  { href: '/app/vpn', label: 'Мои VPN', icon: Laptop },
+  { href: '/app/connections', label: 'Устройства', icon: Laptop },
   { href: '/app/subscription', label: 'Подписка', icon: CreditCard },
   { href: '/app/help', label: 'Помощь', icon: CircleHelp },
 ];
@@ -95,7 +96,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
           </nav>
           <div className={s.sidebarBottom}>
             <div className={s.sidebarNote}>
-              <span>На связи с миром ↗</span>
+              <span>Управление подключениями ↗</span>
               <p>
                 Ваши подключения.
                 <br />В одном месте.
@@ -114,7 +115,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
         <div className={s.appBody}>
           <header className={s.appHeader}>
             <span>
-              Личный кабинет <span className={s.headerDot}>/</span> КукарекуVPN
+              Личный кабинет <span className={s.headerDot}>/</span> Кукареку Онлайн
             </span>
             <Link href="/app/account">
               <User size={17} />
@@ -123,7 +124,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
           </header>
           <main id="main" className={s.content}>
             {banned.data && path !== '/app/account' && path !== '/app/help' ? (
-              <EmptyState title="Доступ к VPN ограничен">
+              <EmptyState title="Аккаунт приостановлен">
                 Для этого аккаунта создание и скачивание подключений недоступны. Обратитесь к
                 администратору сервиса.
               </EmptyState>
@@ -132,7 +133,8 @@ export function AppShell({ children }: { children: React.ReactNode }) {
             )}
           </main>
           <footer className={s.appFooter}>
-            КукарекуVPN <span>Меньше хлопот. Больше интернета.</span>
+            Кукареку Онлайн <span>Подключения в одном кабинете.</span>
+            <LegalLinks />
           </footer>
         </div>
         <nav className={s.mobileNav} aria-label="Мобильная навигация">

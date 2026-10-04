@@ -71,7 +71,7 @@ export function DeviceCard({
           <p>
             {location
               ? `${location.countryName}${location.city ? `, ${location.city}` : ''}`
-              : 'VPN-подключение'}
+              : 'сетевое подключение'}
             <span>·</span>
             {date(profile.createdAt)}
           </p>
@@ -84,7 +84,7 @@ export function DeviceCard({
       </div>
       <div className={s.deviceActions}>
         <DownloadButton id={profile.id} disabled={!entitled || profile.status !== 'ACTIVE'} />
-        <Link href={`/app/vpn/${profile.id}/setup`}>Как подключить ↗</Link>
+        <Link href={`/app/connections/${profile.id}/setup`}>Как подключить ↗</Link>
         <Button
           variant="ghost"
           disabled={busy || remove.isPending}
@@ -104,7 +104,7 @@ export function DeviceCard({
       )}
       {confirm && (
         <ConfirmDialog
-          title={`Удалить VPN для «${profile.deviceName}»?`}
+          title={`Удалить подключение для «${profile.deviceName}»?`}
           onClose={() => setConfirm(false)}
           onConfirm={() => remove.mutate()}
           busy={remove.isPending}
@@ -133,12 +133,12 @@ export function DevicesPage({ dashboard = false }: { dashboard?: boolean }) {
         title={dashboard ? 'Добро пожаловать 👋' : 'Мои устройства'}
         description={
           dashboard
-            ? 'Всё, что нужно для вашего VPN, — здесь.'
+            ? 'Всё, что нужно для ваших подключений, — здесь.'
             : 'Добавляйте устройства и управляйте их подключениями.'
         }
         action={
           ready && entitled ? (
-            <ActionLink href="/app/vpn/new">
+            <ActionLink href="/app/connections/new">
               <Plus size={16} />
               Добавить устройство
             </ActionLink>
@@ -174,14 +174,14 @@ export function DevicesPage({ dashboard = false }: { dashboard?: boolean }) {
           )}
           <div className={s.sectionTitle}>
             <h2>{dashboard ? 'Мои устройства' : `Устройства · ${visible.length}`}</h2>
-            {dashboard && visible.length > 0 && <Link href="/app/vpn">Все устройства ↗</Link>}
+            {dashboard && visible.length > 0 && <Link href="/app/connections">Все устройства ↗</Link>}
           </div>
           {!visible.length ? (
             <EmptyState
               title="Здесь будут ваши устройства"
               action={
                 entitled ? (
-                  <ActionLink href="/app/vpn/new">Добавить первое устройство</ActionLink>
+                  <ActionLink href="/app/connections/new">Добавить первое устройство</ActionLink>
                 ) : undefined
               }
             >
@@ -202,7 +202,7 @@ export function DevicesPage({ dashboard = false }: { dashboard?: boolean }) {
             </div>
           )}
           <div className={s.helpStrip}>
-            <span>Впервые подключаете VPN?</span>
+            <span>Впервые настраиваете подключение?</span>
             <Link href="/app/help">Пошаговая инструкция ↗</Link>
           </div>
         </>

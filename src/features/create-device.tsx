@@ -48,7 +48,7 @@ export function CreateDevice() {
   const location = locations.data?.find((l) => l.id === selectedId);
   return (
     <>
-      <Link href="/app/vpn" className={s.back}>
+      <Link href="/app/connections" className={s.back}>
         <ArrowLeft size={16} />К моим устройствам
       </Link>
       <PageHeading
@@ -102,10 +102,10 @@ export function CreateDevice() {
                   : statusText[create.data.status]}
               </h2>
               <p>
-                VPN для «{create.data.deviceName}»{location && ` · ${location.countryName}`}
+                Подключение для «{create.data.deviceName}»{location && ` · ${location.countryName}`}
               </p>
               <DownloadButton id={create.data.id} disabled={create.data.status !== 'ACTIVE'} />
-              <ActionLink href={`/app/vpn/${create.data.id}/setup`} secondary>
+              <ActionLink href={`/app/connections/${create.data.id}/setup`} secondary>
                 Как подключить
               </ActionLink>
               <Link href="/app">Перейти в личный кабинет →</Link>
@@ -137,7 +137,7 @@ export function CreateDevice() {
                           <Globe2 size={23} />
                           <span>
                             <strong>{name}</strong>
-                            <small>{first.city || 'VPN-подключение'}</small>
+                            <small>{first.city || 'сетевое подключение'}</small>
                           </span>
                           <span className={s.radioMark} />
                         </label>
@@ -174,7 +174,7 @@ export function CreateDevice() {
                         Удалите одно из устройств. Если вам назначен индивидуальный лимит, сервис
                         проверит его при создании.
                       </p>
-                      <Link href="/app/vpn">Мои устройства →</Link>
+                      <Link href="/app/connections">Мои устройства →</Link>
                     </div>
                   )}
                   <div className={s.field}>

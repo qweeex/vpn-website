@@ -36,10 +36,13 @@ export function Checkout({ tariffId }: { tariffId: string }) {
         ) : (
           <section className={s.panel}>
             <h2>{tariff.name}</h2>
-            <p className={s.note}>{tariff.description}</p>
+            <p className={s.note}>
+              Услуга сетевые подключения на {tariff.durationDays} дней, до {tariff.profileLimit}{' '}
+              устройств. {tariff.description}
+            </p>
             <dl className={s.facts}>
               <div>
-                <dt>Срок</dt>
+                <dt>Период услуги</dt>
                 <dd>{tariff.durationDays} дней</dd>
               </div>
               <div>
@@ -51,6 +54,11 @@ export function Checkout({ tariffId }: { tariffId: string }) {
                 <dd className={s.total}>{money(tariff.price, tariff.currency)}</dd>
               </div>
             </dl>
+            <p className={s.note}>
+              Указана полная стоимость за весь период.{' '}
+              <Link href="/terms">Условия услуги и обращения по возвратам</Link> ·{' '}
+              <Link href="/support">Поддержка</Link>
+            </p>
             <div className={s.notice}>
               <strong>Онлайн-оплата пока недоступна</strong>
               <p>

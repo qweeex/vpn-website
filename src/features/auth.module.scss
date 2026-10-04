@@ -14,8 +14,10 @@
     margin: 35px auto;
     img {
       display: block;
-      width: 260px;
-      height: 260px;
+      width: 340px;
+      max-width: 100%;
+      height: auto;
+      border-radius: 16px;
       object-fit: contain;
       margin: 0 auto 20px;
     }
@@ -131,5 +133,14 @@
   }
   .formWrap h1 {
     font-size: 31px;
+  }
+}
+
+.formWrap .legalNotice {
+  font-size: 12px;
+  line-height: 1.7;
+  margin: 0;
+  a {
+    color: var(--blue);
   }
 }

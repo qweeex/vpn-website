@@ -1,0 +1,83 @@
+.form {
+  display: grid;
+  gap: 10px;
+  padding: 26px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--paper);
+  margin: 26px 0;
+  h2 {
+    margin: 0 0 14px;
+  }
+  small {
+    color: #a72b35;
+    &:empty {
+      display: none;
+    }
+  }
+  p {
+    font-size: 12px;
+    color: var(--muted);
+    margin: 0;
+  }
+  textarea {
+    width: 100%;
+    resize: vertical;
+    border: 1px solid #d7deea;
+    border-radius: 10px;
+    padding: 14px;
+    font: inherit;
+    min-height: 100px;
+  }
+  button {
+    justify-self: start;
+  }
+  .consent {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 13px;
+    font-weight: 400;
+    input {
+      width: 18px;
+      height: 18px;
+      min-height: 18px;
+      flex-shrink: 0;
+      margin-top: 4px;
+    }
+  }
+}
+.receipt {
+  background: var(--blue-light);
+  padding: 26px;
+  border-radius: 16px;
+  overflow-wrap: anywhere;
+}
+.messages {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: 16px;
+  margin: 26px 0;
+  li {
+    border: 1px solid var(--line);
+    padding: 20px;
+    border-radius: 14px;
+  }
+  time {
+    display: block;
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 5px;
+  }
+  p {
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+    margin: 16px 0 0;
+  }
+}
+@media (max-width: 600px) {
+  .form {
+    padding: 18px;
+  }
+}

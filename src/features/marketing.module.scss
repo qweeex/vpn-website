@@ -80,7 +80,7 @@
   height: auto;
   position: relative;
   z-index: 1;
-  padding: 30px 20px;
+  border-radius: 18px;
 }
 .visualLabel {
   position: absolute;
@@ -455,7 +455,7 @@
   }
   .mascot {
     width: 90%;
-    padding: 24px 10px;
+    border-radius: 14px;
   }
   .heroNote {
     font-size: 10px;
@@ -547,4 +547,10 @@
 .tariffs:has(> .tariff:only-child) {
   grid-template-columns: minmax(0, 440px);
   justify-content: center;
+}
+
+.periodNote {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: -12px;
 }

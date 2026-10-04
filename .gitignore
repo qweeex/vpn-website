@@ -9,3 +9,5 @@ test-results/
 .idea/
 
 .next-e2e/
+
+/data/

@@ -19,12 +19,12 @@ test('tariffs come from API with minor-unit prices; unavailable payment is expli
   await expect(page).toHaveURL(/register\?next=/);
 });
 test('protected route preserves destination and login returns to it', async ({ page }) => {
-  await page.goto('/app/vpn');
-  await expect(page).toHaveURL(/login\?next=%2Fapp%2Fvpn/);
+  await page.goto('/app/connections');
+  await expect(page).toHaveURL(/login\?next=%2Fapp%2Fconnections/);
   await page.getByLabel('Email', { exact: true }).fill('login@example.com');
   await page.getByLabel('Пароль', { exact: true }).fill('test-password-123');
   await page.getByRole('button', { name: 'Войти', exact: true }).click();
-  await expect(page).toHaveURL('/app/vpn');
+  await expect(page).toHaveURL('/app/connections');
   await expect(page.getByRole('heading', { name: 'Мои устройства', exact: true })).toBeVisible();
   const cookies = await page.context().cookies();
   const session = cookies.find((c) => c.name === 'kukareku_session');
@@ -59,7 +59,7 @@ test('registration validates repeated password and preserves checkout', async ({
 test('empty and active subscriptions', async ({ page }) => {
   await signIn(page, 'none');
   await page.goto('/app');
-  await expect(page.getByRole('heading', { name: 'VPN пока не подключён' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Подключений пока нет' })).toBeVisible();
   await signIn(page);
   await page.goto('/app');
   await expect(page.getByRole('heading', { name: 'Тестовый тариф API' })).toBeVisible();
@@ -67,13 +67,13 @@ test('empty and active subscriptions', async ({ page }) => {
 });
 test('expired subscription disables config download', async ({ page }) => {
   await signIn(page, 'expired');
-  await page.goto('/app/vpn');
+  await page.goto('/app/connections');
   await expect(page.getByRole('heading', { name: 'Подписка закончилась' })).toBeVisible();
   await expect(page.getByRole('button', { name: 'Скачать конфигурацию' })).toBeDisabled();
 });
 test('limit shown and backend remains authoritative', async ({ page }) => {
   await signIn(page, 'limit');
-  await page.goto('/app/vpn');
+  await page.goto('/app/connections');
   await expect(page.getByText('Вы используете все подключения по тарифу — 3 из 3')).toBeVisible();
   await page.getByRole('link', { name: 'Добавить устройство' }).click();
   await page.getByText('Германия', { exact: true }).click();
@@ -86,7 +86,7 @@ test('limit shown and backend remains authoritative', async ({ page }) => {
 });
 test('create, download exact file, setup, confirmation and delete', async ({ page }) => {
   await signIn(page, 'create');
-  await page.goto('/app/vpn/new');
+  await page.goto('/app/connections/new');
   await page.getByText('Германия', { exact: true }).click();
   await page.getByRole('button', { name: 'Продолжить' }).click();
   await page.getByLabel('Название устройства').fill('Рабочий MacBook');
@@ -103,9 +103,9 @@ test('create, download exact file, setup, confirmation and delete', async ({ pag
   await page.getByRole('link', { name: 'Как подключить', exact: false }).click();
   await page.getByRole('button', { name: 'macOS', exact: true }).click();
   await expect(
-    page.getByText('Установите OpenVPN Connect с официального сайта OpenVPN.'),
+    page.getByText('Если совместимое приложение ещё не установлено, запросите в поддержке инструкцию для macOS.'),
   ).toBeVisible();
-  await page.goto('/app/vpn');
+  await page.goto('/app/connections');
   await page.getByRole('button', { name: 'Удалить Рабочий MacBook' }).click();
   await expect(page.getByRole('dialog')).toBeVisible();
   await page.getByRole('button', { name: 'Отмена' }).click();
@@ -116,7 +116,7 @@ test('create, download exact file, setup, confirmation and delete', async ({ pag
 });
 test('node errors remain actionable', async ({ page }) => {
   await signIn(page, 'create');
-  await page.goto('/app/vpn/new');
+  await page.goto('/app/connections/new');
   await page.getByText('Германия', { exact: true }).click();
   await page.getByRole('button', { name: 'Продолжить' }).click();
   await page.getByLabel('Название устройства').fill('Offline');
@@ -128,9 +128,9 @@ test('node errors remain actionable', async ({ page }) => {
 });
 test('banned user sees restriction and can log out', async ({ page }) => {
   await signIn(page, 'banned');
-  await page.goto('/app/vpn');
+  await page.goto('/app/connections');
   await page.getByRole('button', { name: 'Скачать конфигурацию' }).click();
-  await expect(page.getByRole('heading', { name: 'Доступ к VPN ограничен' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Аккаунт приостановлен' })).toBeVisible();
   await page.getByRole('button', { name: 'Выйти', exact: true }).click();
   await expect(page).toHaveURL('/login');
 });
@@ -160,7 +160,7 @@ for (const width of [375, 430, 768, 1024, 1440, 1920]) {
   test(`responsive ${width}px: public, cabinet and wizard have no overflow`, async ({ page }) => {
     await page.setViewportSize({ width, height: 1000 });
     await page.goto('/');
-    await expect(page.getByRole('heading', { name: /VPN без лишнего/ })).toBeVisible();
+    await expect(page.getByRole('heading', { name: /Связь без лишнего/ })).toBeVisible();
     const fits = () =>
       page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth);
     expect(
@@ -179,7 +179,7 @@ for (const width of [375, 430, 768, 1024, 1440, 1920]) {
     ).toBe(true);
     await page.screenshot({ path: `test-results/landing-${width}.png`, fullPage: true });
     await signIn(page);
-    await page.goto('/app/vpn');
+    await page.goto('/app/connections');
     await expect(page.getByRole('heading', { name: 'MacBook Pro' })).toBeVisible();
     expect(
       await fits(),
@@ -196,7 +196,7 @@ for (const width of [375, 430, 768, 1024, 1440, 1920]) {
       ),
     ).toBe(true);
     await page.screenshot({ path: `test-results/devices-${width}.png`, fullPage: true });
-    await page.goto('/app/vpn/new');
+    await page.goto('/app/connections/new');
     await page.getByText('Германия', { exact: true }).click();
     await page.getByRole('button', { name: 'Продолжить' }).click();
     expect(
@@ -222,7 +222,7 @@ test('invalid refresh clears session and returns to login without looping', asyn
   page.on('request', (req) => {
     if (req.url().endsWith('/api/v1/auth/refresh')) refreshCalls++;
   });
-  await page.goto('/app/vpn');
+  await page.goto('/app/connections');
   await expect(page).toHaveURL(/\/login\?next=/);
   expect(refreshCalls).toBe(1);
   expect(

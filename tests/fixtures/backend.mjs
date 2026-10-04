@@ -15,6 +15,7 @@ const tariff = {
   updatedAt: '2026-01-01',
 };
 const nodeId = '22222222-2222-4222-8222-222222222222';
+const tickets = new Map();
 const sessions = new Map();
 const profiles = new Map();
 function profile(i = 1) {
@@ -43,6 +44,48 @@ const server = createServer(async (req, res) => {
   };
   const fail = (code, status = 409) => reply({ code, statusCode: status, message: code }, status);
   if (!url.pathname.startsWith('/api/v1/')) return fail('HTTP_404', 404);
+  if (path === '/support/create') {
+    const id = crypto.randomUUID();
+    const accessKey =
+      crypto.randomUUID().replaceAll('-', '') + crypto.randomUUID().replaceAll('-', '');
+    tickets.set(id, {
+      accessKey,
+      ticket: {
+        id,
+        subject: body.subject,
+        status: 'open',
+        createdAt: new Date().toISOString(),
+        messages: [{ role: 'customer', body: body.message, createdAt: new Date().toISOString() }],
+      },
+    });
+    return reply({ id, accessKey }, 201);
+  }
+  if (path === '/support/read' || path === '/support/message') {
+    const entry = tickets.get(body.id);
+    if (!entry || entry.accessKey !== body.accessKey) return fail('TICKET_NOT_FOUND', 404);
+    if (path.endsWith('/message')) {
+      entry.ticket.messages.push({
+        role: 'customer',
+        body: body.message,
+        createdAt: new Date().toISOString(),
+      });
+      entry.ticket.status = 'open';
+    }
+    return reply(entry.ticket);
+  }
+  // Test-only staff endpoint. Production authorization is covered by backend integration tests.
+  if (path.startsWith('/admin/support/tickets/') && path.endsWith('/messages')) {
+    if (req.headers.authorization !== 'Bearer test-staff') return fail('HTTP_401', 401);
+    const entry = tickets.get(path.split('/')[4]);
+    if (!entry) return fail('TICKET_NOT_FOUND', 404);
+    entry.ticket.messages.push({
+      role: 'support',
+      body: body.message,
+      createdAt: new Date().toISOString(),
+    });
+    entry.ticket.status = 'answered';
+    return reply(entry.ticket);
+  }
   if (path === '/tariffs') return reply(Number(url.searchParams.get('offset')) > 0 ? [] : [tariff]);
   if (path === '/auth/login' || path === '/auth/register') {
     if (body.password === 'wrong-password') return fail('INVALID_CREDENTIALS', 401);

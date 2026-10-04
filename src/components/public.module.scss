@@ -23,22 +23,11 @@
   font-size: 21px;
   white-space: nowrap;
 }
-.brandIcon {
-  width: 40px;
-  height: 40px;
-  background: #101e38;
-  border-radius: 12px;
-  overflow: hidden;
-  display: grid;
-  place-items: center;
-  img {
-    object-fit: contain;
-    width: 40px;
-    height: auto;
-  }
-}
-.blue {
-  color: var(--blue);
+.brandLogo {
+  display: block;
+  width: 120px;
+  height: auto;
+  border-radius: 10px;
 }
 .nav {
   display: flex;

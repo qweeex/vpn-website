@@ -1,4 +1,5 @@
 'use client';
+import { LegalLinks } from '@/components/legal-links';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
@@ -46,19 +47,25 @@ export function AuthForm({ register = false }: { register?: boolean }) {
       <aside className={s.aside}>
         <Brand />
         <div>
-          <Image src="/brand.png" alt="КукарекуVPN" width={340} height={340} priority />
+          <Image
+            src="/kukareku-online.png"
+            alt="Кукареку Онлайн"
+            width={1536}
+            height={1024}
+            sizes="340px"
+          />
           <h2>
             Ваши устройства.
             <br />
-            Ваши маршруты.
+            Ваши подключения.
             <br />
-            <span>Один VPN.</span>
+            <span>Один кабинет.</span>
           </h2>
           <p>
             Всё нужное для подключения —<br />в одном личном кабинете.
           </p>
         </div>
-        <small>Меньше хлопот. Больше интернета.</small>
+        <small>Подключения в одном кабинете.</small>
       </aside>
       <main id="main" className={s.main}>
         <Link href="/" className={s.back}>
@@ -118,6 +125,13 @@ export function AuthForm({ register = false }: { register?: boolean }) {
               </div>
             )}
             {mutation.isError && <ErrorState error={mutation.error} />}
+            {register && (
+              <p className={s.legalNotice}>
+                Создавая аккаунт, вы принимаете{' '}
+                <Link href="/terms">Пользовательское соглашение</Link>. Обработка данных описана в{' '}
+                <Link href="/privacy">Политике конфиденциальности</Link>.
+              </p>
+            )}
             <Button type="submit" busy={mutation.isPending}>
               {register ? 'Создать аккаунт' : 'Войти'} <span aria-hidden="true">→</span>
             </Button>
@@ -129,7 +143,8 @@ export function AuthForm({ register = false }: { register?: boolean }) {
             </Link>
           </p>
         </div>
-        <small className={s.footnote}>КукарекуVPN · Ваш интернет начинается здесь</small>
+        <LegalLinks />
+        <small className={s.footnote}>Кукареку Онлайн · Настройки ваших подключений</small>
       </main>
     </div>
   );

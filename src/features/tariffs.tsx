@@ -31,11 +31,14 @@ export function Tariffs() {
             <span>{t.durationDays} дней</span>
           </div>
           <h3>{t.name}</h3>
-          <p className={s.description}>{t.description || 'Для ваших повседневных подключений'}</p>
+          <p className={s.description}>
+            {t.description || 'Услуга сетевые подключения для ваших устройств'}
+          </p>
           <div className={s.price}>
             {money(t.price, t.currency)}
             <span> / {t.durationDays} дней</span>
           </div>
+          <p className={s.periodNote}>Полная стоимость за {t.durationDays} дней</p>
           <ul>
             <li>
               <Check size={17} />

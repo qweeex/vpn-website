@@ -2,12 +2,12 @@ import type { Metadata } from 'next';
 import { Providers } from '@/components/providers';
 import './globals.scss';
 export const metadata: Metadata = {
-  title: { default: 'КукарекуVPN — VPN без лишнего кукареканья', template: '%s · КукарекуVPN' },
+  title: { default: 'Кукареку Онлайн — Связь без лишнего кукареканья', template: '%s · Кукареку Онлайн' },
   description:
-    'Подключайте свои устройства, выбирайте локацию и управляйте VPN в одном личном кабинете.',
+    'Подключайте свои устройства, выбирайте локацию и управляйте подключениями в одном личном кабинете.',
   openGraph: {
-    title: 'КукарекуVPN',
-    description: 'Ваши устройства. Ваши маршруты. Один VPN.',
+    title: 'Кукареку Онлайн',
+    description: 'Ваши устройства. Ваши подключения. Один кабинет.',
     locale: 'ru_RU',
     type: 'website',
   },

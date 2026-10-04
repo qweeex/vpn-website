@@ -9,11 +9,11 @@ import s from './workspace.module.scss';
 export function NoSubscription({ subscription }: { subscription?: Subscription | null }) {
   return (
     <EmptyState
-      title={subscription ? 'Подписка закончилась' : 'VPN пока не подключён'}
+      title={subscription ? 'Подписка закончилась' : 'Подключений пока нет'}
       action={<ActionLink href="/pricing">Выбрать тариф</ActionLink>}
     >
       {subscription
-        ? `Подписка «${subscription.tariffName}» недоступна. Дата окончания: ${date(subscription.expiresAt)}. VPN-подключения недоступны.`
+        ? `Подписка «${subscription.tariffName}» недоступна. Дата окончания: ${date(subscription.expiresAt)}. сетевые подключения недоступны.`
         : 'Выберите тариф, чтобы начать. Если подписка была раньше, её срок мог закончиться.'}
     </EmptyState>
   );
